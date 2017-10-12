@@ -1,0 +1,22 @@
+
+1. syntax/definition: 
+
+error on line 57 because we were pasing two arguments into the function has_cache_expired, which was defined on line 32 as accepting only one argument
+
+solution was to add expire_in_days argument to definition on line 32
+
+2. caching:
+
+program scraped NYTimes every time, never drawing from cache, because the has_cache_expired would always say that time had expired, which is the condition under which the program will scrape
+
+solution was to change the > in line 46 to a <, so that the program would recognize when time hadn't expired
+
+3. repeated content:
+
+line 183 would pull everything from the targed <h6>, which includes more than just the title
+
+solution was to get just the first child (an <a> that includes the actual title), by adding a .contents[0] after the <h6>
+
+4. undesired content:
+
+see 3
